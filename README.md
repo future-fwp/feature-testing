@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Share to Instagram Stories from a Next.js App
 
-## Getting Started
+## This project demonstrates how to share a ticket (or any content) from a Next.js app to Instagram Stories. It uses deep linking to open Instagram and pre-fill the Stories editor with a centered image of the ticket. The solution supports both iOS and Android devices.
 
-First, run the development server:
+Features
+Dynamic Image Generation:
 
-```bash
+Converts a ticket component into an image.
+
+Centers the image within a 1080x1920 canvas (Instagram Stories size).
+
+Cross-Platform Support:
+
+Works on both iOS and Android.
+
+Redirects users to the appropriate app store if Instagram is not installed.
+
+Simple Integration:
+
+Uses a custom React hook (useShareToInstagram) for logic.
+
+Inline styles for easy customization.
+
+Getting Started
+Follow these steps to set up and run the project locally.
+
+Prerequisites
+Node.js (v14 or higher)
+
+npm or yarn
+
+Installation
+Clone the repository:
+
+bash
+Copy
+git clone https://github.com/your-username/nextjs-instagram-stories.git
+cd nextjs-instagram-stories
+Install dependencies:
+
+bash
+Copy
+npm install
+# or
+yarn install
+Run the development server:
+
+bash
+Copy
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open the app:
+Visit http://localhost:3000 in your browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+How It Works
+1. Ticket Component
+The ticket is a simple div with event details. It is styled to fit within a 300x533 pixel container (maintaining a 9:16 aspect ratio).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. Image Generation
+When the user clicks the "Share to Stories" button:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The ticket component is converted into an image using the html-to-image library.
 
-## Learn More
+The image is centered within a 1080x1920 canvas to fit Instagram Stories.
 
-To learn more about Next.js, take a look at the following resources:
+3. Sharing to Instagram
+The app constructs a deep link (instagram-stories://) and opens it.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If Instagram is not installed, the user is redirected to the App Store (iOS) or Google Play Store (Android).
