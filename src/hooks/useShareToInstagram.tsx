@@ -74,16 +74,20 @@ export default function useShareToInstagram() {
 			// Fallback: If Instagram is not installed, prompt the user to download it
 			setTimeout(() => {
 				if (!document.hidden) {
-					if (isIOS()) {
-						// Redirect to the App Store for iOS
-						window.location.href = "https://apps.apple.com/app/instagram/id389801252";
-					} else if (isAndroid()) {
-						// Redirect to the Google Play Store for Android
-						window.location.href = "https://play.google.com/store/apps/details?id=com.instagram.android";
-					} else {
-						// For other platforms, show a generic message
-						alert("Instagram is not installed. Please download the app to share.");
-					}
+					// if (isIOS()) {
+					// 	// Redirect to the App Store for iOS
+					// 	window.location.href = "https://apps.apple.com/app/instagram/id389801252";
+					// } else if (isAndroid()) {
+					// 	// Redirect to the Google Play Store for Android
+					// 	window.location.href = "https://play.google.com/store/apps/details?id=com.instagram.android";
+					// } else {
+					// 	// For other platforms, show a generic message
+					// 	alert("Instagram is not installed. Please download the app to share.");
+					// 	return;
+					// }
+					window.location.href = `https://www.instagram.com/stories/create/?backgroundImage=${encodeURIComponent(
+						centeredImage
+					)}`;
 				}
 			}, 500);
 		}
