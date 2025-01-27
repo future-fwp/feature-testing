@@ -85,6 +85,10 @@ export default function useShareToInstagram() {
 					// 	alert("Instagram is not installed. Please download the app to share.");
 					// 	return;
 					// }
+					if (!isIOS() && !isAndroid()) {
+						alert("Instagram is not installed. Please download the app to share.");
+						return;
+					}
 					window.location.href = `https://www.instagram.com/stories/create/?backgroundImage=${encodeURIComponent(
 						centeredImage
 					)}`;
