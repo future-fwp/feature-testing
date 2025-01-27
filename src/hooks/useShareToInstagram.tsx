@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef } from "react";
 import { toPng } from "html-to-image";
 
@@ -57,8 +59,8 @@ export default function useShareToInstagram() {
 			setTimeout(() => {
 				if (!document.hidden) {
 					alert("Instagram is not installed. Please download the app to share.");
-					window.location.href = "https://apps.apple.com/app/instagram/id389801252"; // iOS
-					// window.location.href = 'https://play.google.com/store/apps/details?id=com.instagram.android'; // Android
+					// window.location.href = "https://apps.apple.com/app/instagram/id389801252"; // iOS
+					window.location.href = "https://play.google.com/store/apps/details?id=com.instagram.android"; // Android
 				}
 			}, 500);
 		}
