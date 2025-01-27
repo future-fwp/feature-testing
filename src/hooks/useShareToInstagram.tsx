@@ -1,10 +1,19 @@
 "use client";
-
 import { useRef } from "react";
 import { toPng } from "html-to-image";
 
 export default function useShareToInstagram() {
 	const ticketRef = useRef(null);
+
+	// Function to detect if the user is on iOS
+	const isIOS = () => {
+		return /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+	};
+
+	// Function to detect if the user is on Android
+	const isAndroid = () => {
+		return /Android/.test(navigator.userAgent);
+	};
 
 	// Function to generate a centered image for Instagram Stories
 	const generateCenteredImage = async () => {
@@ -58,9 +67,16 @@ export default function useShareToInstagram() {
 			// Fallback: If Instagram is not installed, prompt the user to download it
 			setTimeout(() => {
 				if (!document.hidden) {
-					alert("Instagram is not installed. Please download the app to share.");
-					// window.location.href = "https://apps.apple.com/app/instagram/id389801252"; // iOS
-					window.location.href = "https://play.google.com/store/apps/details?id=com.instagram.android"; // Android
+					if (isIOS()) {
+						// Redirect to the App Store for iOS
+						window.location.href = "https://apps.apple.com/app/instagram/id389801252";
+					} else if (isAndroid()) {
+						// Redirect to the Google Play Store for Android
+						window.location.href = "https://play.google.com/store/apps/details?id=com.instagram.android";
+					} else {
+						// For other platforms, show a generic message
+						alert("Instagram is not installed. Please download the app to share.");
+					}
 				}
 			}, 500);
 		}
