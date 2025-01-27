@@ -2,12 +2,19 @@
 import { useRef } from "react";
 import { toPng } from "html-to-image";
 
+// Define a custom type for the window object
+interface CustomWindow extends Window {
+	MSStream?: unknown;
+}
+
+declare const window: CustomWindow;
+
 export default function useShareToInstagram() {
 	const ticketRef = useRef(null);
 
 	// Function to detect if the user is on iOS
 	const isIOS = () => {
-		return /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+		return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 	};
 
 	// Function to detect if the user is on Android

@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import ShareToInstagram from "@/components/Ticket";
 export default function Home() {
 	return (
